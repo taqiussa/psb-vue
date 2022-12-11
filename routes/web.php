@@ -32,10 +32,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', function () {
-    sleep(2);
     $data = [
-        'users' => Siswa::with('user')->get()->map(fn ($user) => [
-            'label' => $user->user->name,
+        'users' => Siswa::with(['user', 'kelas'])->get()->map(fn ($user) => [
+            'label' => $user->user->name . ' - ' . $user->kelas->nama,
             'key' => $user->nis
         ])
     ];

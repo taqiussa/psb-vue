@@ -12,4 +12,8 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class, 'nis', 'nis')->withDefault();
     }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id')->withDefault();
+    }
 }
